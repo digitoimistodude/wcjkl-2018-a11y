@@ -1,0 +1,542 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>WordCamp Jyväskylä, 9.2.2018: Esteettömyys osaksi WordPress-teemakehitystä</title>
+
+		<link rel="apple-touch-icon" sizes="180x180" href="favicons/apple-touch-icon.png">
+		<link rel="icon" type="image/png" href="favicons/favicon-32x32.png" sizes="32x32">
+		<link rel="icon" type="image/png" href="favicons/favicon-16x16.png" sizes="16x16">
+		<link rel="manifest" href="favicons/manifest.json">
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/rolle.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/monokai-sublime.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+
+<div class="reveal">
+
+	<a href="https://www.dude.fi"><svg style="position: fixed; bottom: 2rem; right: 2rem; z-index: 1000;" width="80" height="80" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><path fill="#000101" stroke="#FFF" stroke-width="1.008" stroke-miterlimit="10" d="M0 0h1000v1000H0z"/><g fill="#FFF"><path d="M340.3 497.7c0 23.5-6.7 41.5-20.1 54s-32.7 18.8-58 18.8h-40.4V427.6h44.8c23.3 0 41.4 6.2 54.3 18.5s19.4 29.5 19.4 51.6zm-31.4.7c0-30.7-13.5-46-40.6-46h-16.1v93h13c29.1 0 43.7-15.6 43.7-47zM486.1 427.6V520c0 10.5-2.4 19.8-7.1 27.7-4.7 7.9-11.5 14-20.5 18.3-8.9 4.2-19.5 6.3-31.6 6.3-18.4 0-32.6-4.7-42.8-14.1-10.2-9.4-15.2-22.3-15.2-38.6v-92h30.2V515c0 11 2.2 19.1 6.6 24.2 4.4 5.1 11.8 7.7 22 7.7 9.9 0 17.1-2.6 21.5-7.8 4.5-5.2 6.7-13.3 6.7-24.4v-87.2h30.2zM633.5 497.7c0 23.5-6.7 41.5-20.1 54s-32.7 18.8-58 18.8H515V427.6h44.8c23.3 0 41.4 6.2 54.3 18.5s19.4 29.5 19.4 51.6zm-31.4.7c0-30.7-13.5-46-40.6-46h-16.1v93h13c29.1 0 43.7-15.6 43.7-47zM661.919 457.94v-30h116.2v30zM661.952 514.108v-30h116.2v30zM661.919 570.44v-30h116.2v30z"/></g></svg></a>
+
+			<div class="slides">				
+				
+				<section data-markdown>
+					<script type="text/template">
+						# Esteettömyys osaksi WordPress-teemakehitystä
+
+						WordCamp Jyväskylä, 9.2.2018<br />
+						<a style="font-size: 3rem; color: #fff; opacity: .3;" href="https://github.com/digitoimistodude/wcjkl-2018-a11y">slides.dude.fi/wcjkl-2018-a11y</a>
+					</script>
+				</section>
+
+				<section data-background-image="img/rolle-bg-2018.jpg" style="text-align: left" data-markdown data-separator-notes="^Notes:">
+					<script type="text/template">
+						## Moro!
+
+						Roni Laukkarinen<br />
+						CTO, perustaja, Digitoimisto Dude Oy<br />
+						<br />								
+
+						<a style="text-shadow: none; box-shadow: none;" href="https://twitter.com/rolle" aria-label="Rollen twitter"><svg style="position: relative; top: 5px;" fill="#1da1f2" aria-labelledby="simpleicons-twitter-icon" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width="32" height="32"><title id="simpleicons-twitter-icon">Twitter icon</title><path d="M23.954 4.569c-.885.389-1.83.654-2.825.775 1.014-.611 1.794-1.574 2.163-2.723-.951.555-2.005.959-3.127 1.184-.896-.959-2.173-1.559-3.591-1.559-2.717 0-4.92 2.203-4.92 4.917 0 .39.045.765.127 1.124C7.691 8.094 4.066 6.13 1.64 3.161c-.427.722-.666 1.561-.666 2.475 0 1.71.87 3.213 2.188 4.096-.807-.026-1.566-.248-2.228-.616v.061c0 2.385 1.693 4.374 3.946 4.827-.413.111-.849.171-1.296.171-.314 0-.615-.03-.916-.086.631 1.953 2.445 3.377 4.604 3.417-1.68 1.319-3.809 2.105-6.102 2.105-.39 0-.779-.023-1.17-.067 2.189 1.394 4.768 2.209 7.557 2.209 9.054 0 13.999-7.496 13.999-13.986 0-.209 0-.42-.015-.63.961-.689 1.8-1.56 2.46-2.548l-.047-.02z"/></svg> <span style="color: #1da1f2"><span style="font-weight: 300">@</span>rolle</span><br />
+						
+						<a style="text-shadow: none; box-shadow: none;" href="https://wordpressfi-slackin.herokuapp.com" aria-label="Suomenkielinen WordPress-yhteisö Slackissa"><svg style="position: relative; top: 5px;" width="32" height="32" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid"><path d="M165.964 15.838c-3.89-11.975-16.752-18.528-28.725-14.636-11.975 3.89-18.528 16.752-14.636 28.725l58.947 181.365c4.048 11.187 16.132 17.473 27.732 14.135 12.1-3.483 19.475-16.334 15.614-28.217L165.964 15.838" fill="#DFA22F"/><path d="M74.626 45.516C70.734 33.542 57.873 26.989 45.9 30.879 33.924 34.77 27.37 47.631 31.263 59.606l58.948 181.366c4.047 11.186 16.132 17.473 27.732 14.132 12.099-3.481 19.474-16.332 15.613-28.217L74.626 45.516" fill="#3CB187"/><path d="M240.162 166.045c11.975-3.89 18.526-16.75 14.636-28.726-3.89-11.973-16.752-18.527-28.725-14.636L44.708 181.632c-11.187 4.046-17.473 16.13-14.135 27.73 3.483 12.099 16.334 19.475 28.217 15.614l181.372-58.93" fill="#CE1E5B"/><path d="M82.508 217.27l43.347-14.084-14.086-43.352-43.35 14.09 14.089 43.347" fill="#392538"/><path d="M173.847 187.591c16.388-5.323 31.62-10.273 43.348-14.084l-14.088-43.36-43.35 14.09 14.09 43.354" fill="#BB242A"/><path d="M210.484 74.706c11.974-3.89 18.527-16.751 14.637-28.727-3.89-11.973-16.752-18.526-28.727-14.636L15.028 90.293C3.842 94.337-2.445 106.422.896 118.022c3.481 12.098 16.332 19.474 28.217 15.613l181.371-58.93" fill="#72C5CD"/><path d="M52.822 125.933c11.805-3.836 27.025-8.782 43.354-14.086-5.323-16.39-10.273-31.622-14.084-43.352l-43.36 14.092 14.09 43.346" fill="#248C73"/><path d="M144.16 96.256l43.356-14.088a546179.21 546179.21 0 0 0-14.089-43.36L130.07 52.9l14.09 43.356" fill="#62803A"/></svg> <span style="color: #72c5ce"><span style="font-weight: 300">@</span>rolle</span><br />
+					
+						<a style="text-shadow: none; box-shadow: none;" href="https://profiles.wordpress.org/rolle" aria-label="Rollen WordPress-profiili"><svg style="position: relative; top: 5px; margin-right: 5px;" aria-labelledby="simpleicons-wordpress-icon" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#21759b"><title id="simpleicons-wordpress-icon">WordPress icon</title><path d="M21.469 6.825c.84 1.537 1.318 3.3 1.318 5.175 0 3.979-2.156 7.456-5.363 9.325l3.295-9.527c.615-1.54.82-2.771.82-3.864 0-.405-.026-.78-.07-1.11m-7.981.105c.647-.03 1.232-.105 1.232-.105.582-.075.514-.93-.067-.899 0 0-1.755.135-2.88.135-1.064 0-2.85-.15-2.85-.15-.585-.03-.661.855-.075.885 0 0 .54.061 1.125.09l1.68 4.605-2.37 7.08L5.354 6.9c.649-.03 1.234-.1 1.234-.1.585-.075.516-.93-.065-.896 0 0-1.746.138-2.874.138-.2 0-.438-.008-.69-.015C4.911 3.15 8.235 1.215 12 1.215c2.809 0 5.365 1.072 7.286 2.833-.046-.003-.091-.009-.141-.009-1.06 0-1.812.923-1.812 1.914 0 .89.513 1.643 1.06 2.531.411.72.89 1.643.89 2.977 0 .915-.354 1.994-.821 3.479l-1.075 3.585-3.9-11.61.001.014zM12 22.784c-1.059 0-2.081-.153-3.048-.437l3.237-9.406 3.315 9.087c.024.053.05.101.078.149-1.12.393-2.325.609-3.582.609M1.211 12c0-1.564.336-3.05.935-4.39L7.29 21.709C3.694 19.96 1.212 16.271 1.211 12M12 0C5.385 0 0 5.385 0 12s5.385 12 12 12 12-5.385 12-12S18.615 0 12 0"/></svg> <span style="color: #21759b"><span style="font-weight: 300"></span>rolle</span><br />
+
+						<a style="text-shadow: none; box-shadow: none;" href="https://github.com/ronilaukkarinen" aria-label="Rollen GitHub"><svg style="margin-right: 5px; position: relative; top: 5px;" width="32" height="32" fill="#fff" aria-labelledby="simpleicons-github-icon" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill=""><title id="simpleicons-github-icon">GitHub icon</title><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg> <span style="color: #fff;">ronilaukkarinen</span></a>
+
+						Notes:
+						- WordPressiä vuodesta 2005
+						- Ammatillisesti täysipäiväisesti vuodesta 2013
+						- Esteetöntä koodia vuodesta 2008, enemmän "tosissaan" tavatessani puolisoni, joka sairastaa kuurosokeutta aiheuttavaa sairautta
+						- Esteettömyys osaksi workflowta on jatkuva prosessi
+					</script>
+				</section>
+
+				<section data-transition="fade" data-markdown data-separator-notes="^Notes:">
+					<script type="text/template">
+						# Miksi?
+						<p style="font-size: 4rem; color: #fff; opacity: .7;"><span style="font-size: 5rem;">“</span>ei meidän sivustoa käytä sokeat<span style="font-size: 5rem;">”</span></p>				
+					</script>
+				</section>
+
+				<section data-transition="fade" data-background-image="img/windowblinds.gif" data-state="dimbg" data-markdown data-separator-notes="^Notes:">
+					<script type="text/template">
+						# Esteetön: käytettävä, huomioonottava
+
+						Notes:
+						- Eng: Accessibility, Usability, Inclusion
+						- Yleensä kun kysyy ihmisiltä ketä esteettömyys koskee, ajatellaan että se koskee vain sokeita
+						- Esteettömyys koskee KAIKKIA, siitä hyötyvät KAIKKI
+						- Esteettömyys parantaa käytettävyyttä KAIKILLE
+						- Napin tai linkin painaminen toimii SINULLA kun klikkaat hiirellä, toimiiko muilla selaajilla? aukeaako alaspudotusvalikko enteriä painamalla?
+					</script>
+				</section>
+
+				<section data-transition="fade" data-markdown data-separator-notes="^Notes:">
+					<script type="text/template">
+						# WCAG ja saavutettavuusdirektiivi
+
+						Notes:
+						- Netin täytyy olla käytettävä muillekin kuin näkeville ja kuuleville ja joka raajan omaavalle
+						- EU:n saavutettavuusdirektiivi on hyväksytty 2016 ja tulee Suomen lainsäädäntöön 2018 syksyllä
+						- WCAG sisältää määritelmät esteettömille verkkosivuille, kaikki on netissä saatavilla
+						- Netin pohjimmainen tarkoitus on olla universaali - Internet kuuluu kaikille
+						- Kannattaa aloittaa nyt
+					</script>
+				</section>
+
+				<section data-background-image="img/rocket.gif" data-markdown data-separator-notes="^Notes:">
+					<script type="text/template">
+						# Esteettömyys ei ole rakettitiedettä
+					</script>
+				</section>
+
+				<section style="text-align: left;" data-markdown data-separator-notes="^Notes:">
+					<script type="text/template">
+						## Peruskauraa:
+
+						<ul style="font-size: 3rem; list-style: none; margin: 0; padding: 0;">
+							<li>- Osana workflowta: Testaa <u style="color: #fff;">työn aikana</u> kuten responsiivisuutta</li>
+							<li style="opacity: 0;">- Selaa <kbd>TAB</kbd>, <kbd>SHIFT + TAB</kbd>, <kbd>Enter</kbd> ja <kbd>Esc</kbd> -näppäimillä</li>
+							<li style="opacity: 0;">- Kehitä esteetöntä pohjateemaa</li>
+							<li style="opacity: 0;">- <b style="color: #fff;">Kontrasti!</b> Kritisoi graafisia valintoja</li>
+							<li style="opacity: 0;">- Tuota validia ja semanttista HTML:ää</li>
+							<li style="opacity: 0;">- Suorituskyky: Pakkaa, minifoi, optimoi (CSS, SVG, kuvat...)</li>
+						</ul>
+						   
+						Notes:
+						- Älä testaa jälkikäteen. Jos joku ominaisuus muuttuu, tulee enemmän työtä
+						- Teeman koodaamisen aikana esteettömyyden kehittämisestä tulee tapa, jälkikäteen unohtuu
+			
+					</script>
+				</section>
+
+				<section style="text-align: left;" data-markdown data-separator-notes="^Notes:">
+					<script type="text/template">
+						## Peruskauraa:
+
+						<ul style="font-size: 3rem; list-style: none; margin: 0; padding: 0;">
+							<li>- Osana workflowta: Testaa <u style="color: #fff;">työn aikana</u> kuten responsiivisuutta</li>
+							<li>- Selaa <kbd>TAB</kbd>, <kbd>SHIFT + TAB</kbd>, <kbd>Enter</kbd> ja <kbd>Esc</kbd> -näppäimillä</li>
+							<li style="opacity: 0;">- Kehitä esteetöntä pohjateemaa</li>
+							<li style="opacity: 0;">- <b style="color: #fff;">Kontrasti!</b> Kritisoi graafisia valintoja</li>
+							<li style="opacity: 0;">- Tuota validia ja semanttista HTML:ää</li>
+							<li style="opacity: 0;">- Suorituskyky: <a class="link" href="https://github.com/terinjokes/gulp-uglify">uglify</a>, <a class="link" href="https://github.com/scniro/gulp-clean-css">clean-css</a>, <a class="link" href="https://github.com/svg/svgo">svgo</a>, <a class="link" href="https://imageoptim.com/">ImageOptim</a>...</li>
+						</ul>
+						   
+						Notes:
+						- Näppäimistöllä selaaminen on kätevä tapa testata miten sivusto toimii esteettömästi
+						- Valikkojen ja toiminnallisuuksien testaus ehkäpä tärkeintä
+						- Tab + shift tab lisäksi esc ja enter on hyvä testata läpi etenkin toiminnoissa
+					</script>
+				</section>
+
+				<section style="text-align: left;" data-markdown data-separator-notes="^Notes:">
+					<script type="text/template">
+						## Peruskauraa:
+
+						<ul style="font-size: 3rem; list-style: none; margin: 0; padding: 0;">
+							<li>- Osana workflowta: Testaa <u style="color: #fff;">työn aikana</u> kuten responsiivisuutta</li>
+							<li>- Selaa <kbd>TAB</kbd>, <kbd>SHIFT + TAB</kbd>, <kbd>Enter</kbd> ja <kbd>Esc</kbd> -näppäimillä</li>
+							<li>- Kehitä esteetöntä pohjateemaa</li>
+							<li style="opacity: 0;">- <b style="color: #fff;">Kontrasti!</b> Kritisoi graafisia valintoja</li>
+							<li style="opacity: 0;">- Tuota validia ja semanttista HTML:ää</li>
+							<li style="opacity: 0;">- Suorituskyky: <a class="link" href="https://github.com/terinjokes/gulp-uglify">uglify</a>, <a class="link" href="https://github.com/scniro/gulp-clean-css">clean-css</a>, <a class="link" href="https://github.com/svg/svgo">svgo</a>, <a class="link" href="https://imageoptim.com/">ImageOptim</a>...</li>						
+						</ul>
+						   
+						Notes:
+						- Esteettömiä teemoja löytyy jonkin verran WordPressin teemadirektorista. Suosituimpia mm. Underscores, slightly, penguin ja tietysti oletusteema twentyseventeen
+						- Pohjateema on tärkeä, koska siihen voi rakentaa placeholdereita asioille, joiden tulee olla esteettömiä ja kehittää esteettömyyttä jatkuvasti eteenpäin
+						- Kun asioita on projektin alkuvaiheessa jo kunnolla tehtynä kuluu vähemmän aikaa testailuun
+					</script>
+				</section>
+
+				<section style="text-align: left;" data-markdown data-separator-notes="^Notes:">
+					<script type="text/template">
+						## Peruskauraa:
+
+						<ul style="font-size: 3rem; list-style: none; margin: 0; padding: 0;">
+							<li>- Osana workflowta: Testaa <u style="color: #fff;">työn aikana</u> kuten responsiivisuutta</li>
+							<li>- Selaa <kbd>TAB</kbd>, <kbd>SHIFT + TAB</kbd>, <kbd>Enter</kbd> ja <kbd>Esc</kbd> -näppäimillä</li>
+							<li>- Kehitä esteetöntä pohjateemaa</li>
+							<li>- <b style="color: #fff;">Kontrasti!</b> Kritisoi graafisia valintoja</li>
+							<li style="opacity: 0;">- Tuota validia ja semanttista HTML:ää</li>
+							<li style="opacity: 0;">- Suorituskyky: <a class="link" href="https://github.com/terinjokes/gulp-uglify">uglify</a>, <a class="link" href="https://github.com/scniro/gulp-clean-css">clean-css</a>, <a class="link" href="https://github.com/svg/svgo">svgo</a>, <a class="link" href="https://imageoptim.com/">ImageOptim</a>...</li>
+						</ul>
+						   
+						Notes:
+						- Graafikkoja pitää välillä kritisoida
+						- Onko teksti liian haaleaa
+						- Onko toiminto mahdoton toteuttaa esteettömäksi
+						- Ei kultaista keskitietä, mutta hyvä pitää mielessä
+					</script>
+				</section>				
+
+				<section style="text-align: left;" data-markdown data-separator-notes="^Notes:">
+					<script type="text/template">
+						## Peruskauraa:
+
+						<ul style="font-size: 3rem; list-style: none; margin: 0; padding: 0;">
+							<li>- Osana workflowta: Testaa <u style="color: #fff;">työn aikana</u> kuten responsiivisuutta</li>
+							<li>- Selaa <kbd>TAB</kbd>, <kbd>SHIFT + TAB</kbd>, <kbd>Enter</kbd> ja <kbd>Esc</kbd> -näppäimillä</li>
+							<li>- Kehitä esteetöntä pohjateemaa</li>
+							<li>- <b style="color: #fff;">Kontrasti!</b> Kritisoi graafisia valintoja</li>
+							<li>- Tuota validia ja semanttista HTML:ää</li>
+							<li style="opacity: 0;">- Suorituskyky: <a class="link" href="https://github.com/terinjokes/gulp-uglify">uglify</a>, <a class="link" href="https://github.com/scniro/gulp-clean-css">clean-css</a>, <a class="link" href="https://github.com/svg/svgo">svgo</a>, <a class="link" href="https://imageoptim.com/">ImageOptim</a>...</li>
+						</ul>
+						   
+						Notes:
+						- Itsestäänselvyys, mutta unohtuu usein tarkistaa
+					</script>
+				</section>
+
+				<section style="text-align: left;" data-markdown data-separator-notes="^Notes:">
+					<script type="text/template">
+						## Peruskauraa:
+
+						<ul style="font-size: 3rem; list-style: none; margin: 0; padding: 0;">
+							<li>- Osana workflowta: Testaa <u style="color: #fff;">työn aikana</u> kuten responsiivisuutta</li>
+							<li>- Selaa <kbd>TAB</kbd>, <kbd>SHIFT + TAB</kbd>, <kbd>Enter</kbd> ja <kbd>Esc</kbd> -näppäimillä</li>
+							<li>- Kehitä esteetöntä pohjateemaa</li>
+							<li>- <b style="color: #fff;">Kontrasti!</b> Kritisoi graafisia valintoja</li>
+							<li>- Tuota validia ja semanttista HTML:ää</li>
+							<li>- Suorituskyky: <a class="link" href="https://github.com/terinjokes/gulp-uglify">uglify</a>, <a class="link" href="https://github.com/scniro/gulp-clean-css">clean-css</a>, <a class="link" href="https://github.com/svg/svgo">svgo</a>, <a class="link" href="https://imageoptim.com/">ImageOptim</a>...</li>
+						</ul>
+						   
+						Notes:
+						- Pakkaa, minifoi, optimoi
+						- Nopeampi sivusto toimii paremmin kaikille ja on näin ollen esteettömämpi
+					</script>
+				</section>					
+
+				<section data-markdown data-separator-notes="^Notes:">
+					<script type="text/template">
+						# :focus
+					</script>
+				</section>
+
+				<section data-markdown data-separator-notes="^Notes:">
+					<script type="text/template">
+						Ei näin. 👎
+
+						<pre><code class="scss hljs" data-trim data-noescape>
+						*:focus {
+						  outline: none;
+						}
+						</code></pre>
+					</script>
+				</section>
+
+				<section data-markdown data-separator-notes="^Notes:">
+					<script type="text/template">
+						Varmista että kohdistusreunus erottuu. 👍
+
+						<pre><code class="scss hljs" data-trim data-noescape>
+						// Override focus outline only where needed
+						input,
+						button,
+						select,
+						textarea {
+						  &:focus {
+						    outline: 1px solid $color_links;
+						  }
+						}
+
+						// what-input.js
+
+						// Keyboard related
+						[data-whatintent='keyboard'] .element:focus {
+						  // Your keyboard related other focus styles here
+						}
+
+						// Mouse related
+						[data-whatintent='mouse'] *:focus {
+						  outline: none;
+						}
+						</code></pre>
+
+						Notes:
+						- Selaimen oletus on hyvä, mutta esim. Firefoxissa pistereunus ei ole tarpeeksi näkyvä
+						- Jos mahdollista, tarjoa kävijälle oma, selkeästi näkyvä reunus
+					</script>
+				</section>				
+
+				<section data-markdown data-separator-notes="^Notes:">
+					<script type="text/template">
+						# Linkki vs. nappi
+					</script>
+				</section>
+
+				<section data-markdown data-separator-notes="^Notes:">
+					<script type="text/template">
+						<span style="font-size: 2.5rem;">Linkki <u style="color: #fff;">ohjaa</u> kävijän jonnekin.</span>
+
+						<pre style="margin-bottom: 8rem;"><code class="html hljs" data-trim data-noescape>
+						&lt;a class="button" <mark>href="https://example.com/yhteystiedot"</mark>&gt;Ota yhteyttä&lt;/a&gt;
+						</code></pre>
+
+						<span style="font-size: 2.5rem;">Nappi <u style="color: #fff;">tekee</u> jotain.</span>
+
+						<pre><code class="html hljs" data-trim data-noescape>
+						&lt;button id="menu-button" class="main-navigation-toggle" aria-controls="menu-primary"
+						aria-expanded="false"><mark>Avaa valikko</mark>&lt;/button&gt;
+						</code></pre>
+
+						Notes:
+						- Linkki muotoillaan nykyään usein napiksi, se on OK
+						- Käytä nappia toimintoihin, linkkiä linkkeihin, ei päinvastoin
+					</script>
+				</section>				
+
+				<section data-markdown data-separator-notes="^Notes:">
+					<script type="text/template">
+						# Kuvat ja kuvakkeet
+					</script>
+				</section>
+
+				<section data-markdown data-separator-notes="^Notes:">
+					<script type="text/template">
+						Ei näin. 👎
+
+						<pre><code class="html hljs" data-trim data-noescape>
+						&lt;img src="images/sivuston-kannalta-oleellinen-kuvaava-kuva.jpg" <mark>alt=""</mark> /&gt;
+						</code></pre>
+					</script>
+				</section>
+
+				<section data-markdown data-separator-notes="^Notes:">
+					<script type="text/template">
+						Vaan näin 👍
+
+						<pre><code class="html hljs" data-trim data-noescape>
+						&lt;img src="images/sivuston-kannalta-oleellinen-kuvaava-kuva.jpg" <mark>alt="Ylhäältä päin <br />otettu ilmakuva Yritys Oy:n toimistosta Helsingin vilkkassa keskustassa"</mark> /&gt;
+						</code></pre>
+					</script>
+				</section>
+
+				<section data-markdown data-separator-notes="^Notes:">
+					<script type="text/template">
+						Visuaaliset koristeet ja taustakuvat eivät tarvitse selitettä.
+
+						<img style="max-width: 900px;" src="img/taustakuva.png" alt="Ulkoasu, jossa on kuvitetaustakuva maisemasta, jonka päällä seliteteksti" />
+
+						Notes:
+						- Jos kuva ei liity aiheeseen mitenkään eikä anna mitään lisäarvoa, sitä ei kannata selittää
+						- Hidastava asia jos tässä olisi selitystä mitä kuvassa on ja vasta sitten pääsisi lukemaan eteenpäin
+					</script>
+				</section>
+
+				<section data-markdown data-separator-notes="^Notes:">
+					<script type="text/template">
+						Visuaaliset koristeet ja taustakuvat eivät tarvitse selitettä.
+
+						<img style="max-width: 900px;" src="img/taustakuva-vrt.png" alt="Ulkoasu, jossa kuvitustaustakuvan tilalla on mustaa" />
+
+						Notes:
+						- Oleelliset asiat pitää esittää muulla tavoin kuin taustakuvilla
+					</script>
+				</section>
+
+				<section data-markdown data-separator-notes="^Notes:">
+					<script type="text/template">
+						Toimintoa havainnollistavat kuvakkeet eivät tarvitse selitettä.
+
+						<pre><code class="html hljs" data-trim data-noescape>
+						&lt;svg xmlns="http://www.w3.org/2000/svg" width="30" height="20" viewBox="0 0 21.3 11.7"
+						<mark>aria-hidden="true"</mark>>&lt;path fill="#002C71" d="M.6 5.8c0 .3.2.5.5.5h18.1L15.5
+						10c-.2.2-.2.5 0 .7.2.2.5.2.7 0l4.6-4.6c.1-.1.1-.2.1-.4 0-.1-.1-.3-.1-.4L16.2.7c-.2-.2-.5-
+						.2-.7 0-.2.2-.2.5 0 .7l3.7 3.7H1.1c-.3.2-.5.5-.5.7zm0 0"/>&lt;/svg&gt;
+						</code></pre>		
+
+						<img style="max-width: 900px; border-radius: 4px;" src="img/svg-aria-hidden.png" alt="Nuolikuvake, joka ei tarvitse aria-labelia ja voi pistää piiloon" />
+					</script>
+				</section>
+
+				<section data-markdown data-separator-notes="^Notes:">
+					<script type="text/template">
+						Lisää selite lisäarvoa antaville kuvakkeille.
+
+						<pre><code class="html hljs" data-trim data-noescape>
+						&lt;a href="https://twitter.com/rolle" <mark>aria-label="Rollen twitter-profiili"</mark>&gt;&lt;svg fill="#1da1f2" 
+						<mark>aria-labelledby="simpleicons-twitter-icon"</mark> role="img" viewBox="0 0 24 24" 
+						xmlns="http://www.w3.org/2000/svg" width="32" height="32"&gt;<mark>&lt;title id="simpleicons-
+						twitter-icon"&gt;Twitter-kuvake&lt;/title&gt;</mark>&lt;path d="M23.954 4.569c-.885.389-1.83.
+						654-2.825.775 1.014-.611 1.794-1.574 2.163-2.723-.951.555-2.005.959-3.127 1.184-.896-.959-2.173-1.559-3.591-1.559-2.717 0-4.92 2.203-4.92 4.917 0 .39.045.765.127
+						 1.124C7.691 8.094 4.066 6.13 1.64 3.161c-.427.722-.666 1.561-.666 2.475 0 1.71.87 3.
+						 213 2.188 4.096-.807-.026-1.566-.248-2.228-.616v.061c0 2.385 1.693 4.374 3.946 4.827-.413.111-.849.171-1.296.171-.314 0-.615-.03-.916-.086.631 1.953 2.445 3.377 4.
+						 604 3.417-1.68 1.319-3.809 2.105-6.102 2.105-.39 0-.779-.023-1.17-.067 2.189 1.394 
+						 4.768 2.209 7.557 2.209 9.054 0 13.999-7.496 13.999-13.986 0-.209 0-.42-.015-.63.96
+						 1-.689 1.8-1.56 2.46-2.548l-.047-.02z"/&gt;&lt;/svg&gt; @rolle
+						</code></pre>
+
+						<img style="max-width: 900px; border-radius: 4px;" src="img/svg-some-icons.png" alt="Some-kuvakkeita linkkeineen" />
+
+						Notes:
+						- Tässä esimerkissä jos nuolella olisi aria-määritykset esimerkiksi selitettynä "Nuoli-kuvake", ruudunlukijalle tulee turhaa tietoa
+					</script>
+				</section>
+
+				<section data-markdown data-separator-notes="^Notes:">
+					<script type="text/template">
+						# JavaScript
+						<p style="font-size: 3rem; color: #fff; opacity: .7;"><a class="link" href="https://github.com/edenspiekermann/a11y-dialog">a11y-dialog</a>, <a class="link" href="https://github.com/viljamis/responsive-nav.js">viljamis/responsive-nav.js</a>...</p>
+					</script>
+				</section>
+
+				<section data-background-video="video/focus.mp4" data-background-video-loop data-background-video-muted data-markdown data-separator-notes="^Notes:">
+					<script type="text/template">
+					</script>
+				</section>
+
+				<section data-markdown data-separator-notes="^Notes:">
+					<script type="text/template">
+						<a href="https://codepen.io/shaman_tito/post/finding-all-perfect-responsive-multi-level-dropdown-css-menus"><img style="max-width: 600px; border-radius: 5px;" src="img/valikot.png" alt="Vertailutaulukko erilaisista JavaScript-valikoista" /></a>
+
+						Notes:
+						- "Valmista" ei olekaan
+						- Modaa hyvin testattua tai... (seuraava slide: tee se itse)
+					</script>
+				</section>
+
+				<section data-markdown data-separator-notes="^Notes:">
+					<script type="text/template">
+						# DIY
+					</script>
+				</section>						
+
+				<section data-markdown data-separator-notes="^Notes:">
+					<script type="text/template">
+						# Työkalut & testaaminen
+						<p style="font-size: 3rem; color: #fff; opacity: .7;"><a class="link" href="https://make.wordpress.org/accessibility/handbook/which-tools-can-i-use/useful-tools/">make.wordpress.org/accessibility/handbook/which-tools-can-i-use/useful-tools</a></p>
+					</script>
+				</section>
+
+				<section data-markdown data-separator-notes="^Notes:">
+					<script type="text/template">
+						<a href="https://github.com/brunopulis/awesome-a11y"><img style="max-width: 900px;" src="img/awesome-a11y.png" alt="Ruutukaappaus Awesome A11y GitHub-sivustosta, lista työkaluista" /></a>
+
+						Notes:
+						- Työkaluja löytyy nykyään pilvin pimein
+						- Testauta oikeilla käyttäjillä, jos mahdollista
+					</script>
+				</section>
+
+				<section data-markdown data-separator-notes="^Notes:">
+					<script type="text/template">
+						# tota11y
+
+						<a href="http://khan.github.io/tota11y/"><img style="width: 250px; height: 250px;" src="img/tota11y-logo.png" alt="Esteettömyystyökalu tota11y:n logo, joka esittää silmälaseja" /></a>
+					</script>
+				</section>				
+
+				<section data-markdown data-separator-notes="^Notes:">
+					<script type="text/template">
+						<a href="http://khan.github.io/tota11y/"><img style="max-width: 900px;" src="img/tota11y-screenshot.png" alt="Kuvankaappaus tota11y-työkalusta" /></a>
+					</script>
+				</section>	
+
+				<section data-markdown data-separator-notes="^Notes:">
+					<script type="text/template">
+						<a href="https://wave.webaim.org/"><img style="width: 600px; height: auto;" src="img/wave-logo.png" alt="Esteettömyystyökalu WAVE:n logo, joka näyttää W-kirjaimelta" /></a>
+					</script>
+				</section>
+
+				<section data-markdown data-separator-notes="^Notes:">
+					<script type="text/template">
+						<a href="https://wave.webaim.org/"><img style="max-width: 900px;" src="img/wave-screenshot.png" alt="Kuvankaappaus WAVE-työkalusta" /></a>
+					</script>
+				</section>
+
+				<section style="text-align: left;" data-markdown data-separator-notes="^Notes:">
+					<script type="text/template">
+						## Oikeat ruudunlukijat:
+
+						<ul style="font-size: 3rem; list-style: none; margin: 0; padding: 0;">
+							<li>- macOS: Voiceover (<kbd>CMD</kbd> + <kbd>F5</kbd>)</li>
+							<li>- Windows: <a class="link" href="https://www.nvaccess.org/">NVDA</a></li>
+							<li>- Linux: <a class="link" href="https://help.gnome.org/users/orca/stable/">Orca</a></li>
+						</ul>
+
+						Notes:
+						- Paras testata oikeilla laitteilla. NVDA on käytetyin
+						- Samalla kun testaa IE:llä niin voi kokeilla NVDA:lla
+					</script>
+				</section>
+
+				<section style="text-align: left;" data-markdown data-separator-notes="^Notes:">
+					<script type="text/template">
+						## Muita tapoja testata:
+
+						<ul style="font-size: 3rem; list-style: none; margin: 0; padding: 0;">
+							<li>- Automatiikka: Gulp / Grunt: <a href="https://github.com/dequelabs/axe-core" class="link">aXe-core</a>, <a href="https://github.com/yargalot/AccessSniff" class="link">AccessSniff</a></li>
+							<li>- Oikeat ihmiset, auditointi</li>
+							<li>- Avoin lähdekoodi, yhteisö</li>
+						</ul>
+
+						Notes:
+						- Automaatiotekniikoista saisi oman luennon
+						- Jos tunnet ihmisiä, pyydä apua
+					</script>
+				</section>				
+
+				<section data-markdown data-separator-notes="^Notes:">
+					<script type="text/template">
+						# Osallistu
+						<p style="font-size: 4rem; color: #fff; opacity: .7;"><a class="link" href="https://make.wordpress.org/accessibility/">make.wordpress.org/accessibility</a></p>
+
+					</script>
+				</section>
+
+				<section data-markdown data-separator-notes="^Notes:">
+					<script type="text/template">
+						# Kiitos!
+						<p style="font-size: 4rem; color: #fff; opacity: .7;">Kysyttävää?</p>
+
+					</script>
+				</section>
+
+			</div>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info about config & dependencies:
+			// - https://github.com/hakimel/reveal.js#configuration
+			// - https://github.com/hakimel/reveal.js#dependencies
+			Reveal.initialize({
+				controls: false,
+				progress: true,
+				history: false,
+				mouseWheel: false,
+				center: true,
+				touch: true,
+				transition: 'fade', // none/fade/slide/convex/concave/zoom
+				transitionSpeed: 'slow', // default/fast/slow
+				hideAddressBar: true,
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+				]
+			});
+		</script>
+	</body>
+</html>
